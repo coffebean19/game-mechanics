@@ -5,9 +5,9 @@ C=main.c
 CFLAGS = -Wall -Wextra -Iinclude
 LDFLAGS = -Llib -lraylib -lm -ldl -lGL -lX11
 
-all: game
+all: shooter
 
-game:
+shooter:
 	$(CC) $(C) -o program $(CFLAGS) $(LDFLAGS)
 
 clean:

@@ -19,7 +19,7 @@ static Vector2 bullet_position;
 static Vector2 target_position;
 static Color bullet_color = RED;
 static bool bullet_active = false;
-static float bullet_speed = 500.0f;
+static float bullet_speed = 300.0f;
 static Vector2 bullet_speed2 = { 0.0f, 0.0f};
 static float bullet_slope = 0.0f;
 static float bullet_constant = 0.0f;
@@ -28,6 +28,10 @@ static float delta;
 
 void UpdateBallPosition();
 void FireBullet();
+void FireBulletOld();
+
+
+// DEPRECATED FUNCTIONS
 void CalculateBulletTrajectory();
 void CalculateBulletSpeed();
 float NormalizeDegrees(float x);
@@ -67,7 +71,7 @@ int main() {
         ClearBackground(BLACK);
         
         DrawCircle(ball_position.x, ball_position.y, radius, ball_color);
-        // DrawLine(ball_position.x, ball_position.y, aim_position.x, aim_position.y, WHITE);
+        DrawLine(ball_position.x, ball_position.y, aim_position.x, aim_position.y, WHITE);
         DrawRectangle(aim_position.x, aim_position.y, 10, 10, GREEN);
         if (bullet_active) {
          DrawRectangle(bullet_position.x, bullet_position.y, 5, 5, bullet_color);  
@@ -92,7 +96,31 @@ void UpdateBallPosition() {
     }
 }
 
+
 void FireBullet() {
+    bullet_active = true;
+    
+    bullet_position = ball_position;
+    
+    Vector2 direction = {
+        aim_position.x - ball_position.x,
+        aim_position.y - ball_position.y
+    };
+    
+    float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
+    
+    if (length != 0.0f) {
+        direction.x /= length;
+        direction.y /= length;
+    }
+    
+    bullet_speed2.x = direction.x * bullet_speed;
+    bullet_speed2.y = direction.y * bullet_speed;
+}
+
+
+// DEPRECATED FUNCTIONS
+void FireBulletOld() {
     bullet_active = true;
     bullet_position.x = ball_position.x;
     bullet_position.y = ball_position.y;
