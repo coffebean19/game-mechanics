@@ -17,13 +17,13 @@ int main() {
 
   InitWindow(600, 400, "Sprite test");
 
-  Texture2D player_texture = LoadTexture("assets/sprite.png");
+  Texture2D player_texture = LoadTexture("assets/drawing_panel.png");
 
   Animation anim = (Animation) {
     .first = 0,
     .last = 3,
     .current = 0,
-    .speed = 0.1f,
+    .speed = 0.3f,
     .duration_left = 0.1f
   };
 
@@ -68,13 +68,13 @@ void AnimationUpdate(Animation* self) {
 }
 
 Rectangle AnimationFrame(Animation* self, int num_frames_per_row) {
-    int x = (self->current % num_frames_per_row) * 16;
-    int y = (self->current / num_frames_per_row) * 16;
+    int x = (self->current % num_frames_per_row) * 32;
+    int y = (self->current / num_frames_per_row) * 32;
 
     return (Rectangle) {
         x=x,
         y=y,
-        16.0f,
-        16.0f
+        32.0f,
+        32.0f
     };
 }

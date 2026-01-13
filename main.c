@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <raylib.h>
 
-
 static const int screen_width = 800;
 static const int screen_height = 450;
 
@@ -21,6 +20,8 @@ static Color bullet_color = RED;
 static bool bullet_active = false;
 static float bullet_speed = 300.0f;
 static Vector2 bullet_speed2 = { 0.0f, 0.0f};
+
+// DEPRECATED
 static float bullet_slope = 0.0f;
 static float bullet_constant = 0.0f;
 
@@ -80,6 +81,8 @@ int main() {
 
         EndDrawing();
     }
+
+    CloseWindow();
 
     return 0;
 }   
