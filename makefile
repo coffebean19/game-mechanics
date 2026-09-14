@@ -8,7 +8,7 @@ LDFLAGS = -Llib -lraylib -lm -ldl -lGL -lX11
 all: shooter sprite
 
 shooter:
-	$(CC) $(C) -o program $(CFLAGS) $(LDFLAGS)
+	$(CC) ./shooter/main.c -o shooter $(CFLAGS) $(LDFLAGS)
 
 sprite:
 	$(CC) sprite.c -o sprit $(CFLAGS) $(LDFLAGS)
